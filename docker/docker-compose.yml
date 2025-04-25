@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  random-image-server:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ${IMAGE_DIR:-../images}:/var/www/images
+    restart: unless-stopped
