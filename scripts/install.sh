@@ -24,7 +24,12 @@ else
     exit 1
 fi
 
+# Install Lua dependencies
+echo "Installing Lua dependencies..."
+luarocks install luafilesystem
+
 # Create images directory if it doesn't exist
+echo "Setting up directories..."
 mkdir -p $IMAGE_DIR
 
-echo "Dependencies installed!"
+echo "Lua dependencies and directories set up!"
