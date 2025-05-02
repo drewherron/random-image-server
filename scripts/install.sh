@@ -40,4 +40,18 @@ cp $REPO_DIR/nginx/conf.d/random-image.conf $NGINX_CONF_DIR/
 echo "Configuring paths..."
 sed -i "s|/var/www/images|$IMAGE_DIR|g" $NGINX_CONF_DIR/random-image.conf
 
-echo "Configuration files set up!"
+# Set up permissions
+echo "Setting up permissions..."
+bash $REPO_DIR/scripts/setup-permissions.sh $IMAGE_DIR $NGINX_USER
+
+# Restart Nginx
+echo "Restarting Nginx..."
+if command -v systemctl > /dev/null; then
+    systemctl restart nginx
+else
+    service nginx restart
+fi
+
+echo "Installation complete!"
+echo "Add your images to $IMAGE_DIR"
+echo "Access your random image server at http://localhost"
