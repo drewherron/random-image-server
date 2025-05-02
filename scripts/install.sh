@@ -32,4 +32,12 @@ luarocks install luafilesystem
 echo "Setting up directories..."
 mkdir -p $IMAGE_DIR
 
-echo "Lua dependencies and directories set up!"
+# Copy configuration files
+echo "Copying configuration files..."
+cp $REPO_DIR/nginx/conf.d/random-image.conf $NGINX_CONF_DIR/
+
+# Replace placeholders
+echo "Configuring paths..."
+sed -i "s|/var/www/images|$IMAGE_DIR|g" $NGINX_CONF_DIR/random-image.conf
+
+echo "Configuration files set up!"
