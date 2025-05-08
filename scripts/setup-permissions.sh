@@ -33,4 +33,10 @@ if [ -z "$(ls -A $IMAGE_DIR)" ]; then
         # Create a simple text file if no samples exist
         echo "No sample images available. Please add your own images." > "$IMAGE_DIR/README.txt"
     fi
+
+    # Fix permissions for new files
+    chown -R $NGINX_USER:$NGINX_USER "$IMAGE_DIR"
+    find "$IMAGE_DIR" -type f -exec chmod 644 {} \;
 fi
+
+echo "Permissions setup complete for $IMAGE_DIR"
