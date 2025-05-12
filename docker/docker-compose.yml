@@ -9,4 +9,5 @@ services:
       - "80:80"
     volumes:
       - ${IMAGE_DIR:-../images}:/var/www/images
+      - ../static:/var/www/static
     restart: unless-stopped

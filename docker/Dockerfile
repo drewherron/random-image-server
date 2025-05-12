@@ -6,6 +6,7 @@ RUN apk add --no-cache luarocks lua5.1-filesystem
 # Copy configurations
 COPY nginx/nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
 COPY nginx/conf.d /etc/nginx/conf.d
+COPY static /var/www/static
 
 # Remove default configuration
 RUN rm -f /etc/nginx/conf.d/default.conf

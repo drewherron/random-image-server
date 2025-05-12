@@ -28,9 +28,14 @@ fi
 echo "Installing Lua dependencies..."
 luarocks install luafilesystem
 
-# Create images directory if it doesn't exist
+# Create directories if they don't exist
 echo "Setting up directories..."
 mkdir -p $IMAGE_DIR
+mkdir -p /var/www/static
+
+# Copy static files
+echo "Copying static files..."
+cp -r $REPO_DIR/static/* /var/www/static/
 
 # Copy configuration files
 echo "Copying configuration files..."
@@ -42,7 +47,7 @@ sed -i "s|/var/www/images|$IMAGE_DIR|g" $NGINX_CONF_DIR/random-image.conf
 
 # Set up permissions
 echo "Setting up permissions..."
-bash $REPO_DIR/scripts/setup-permissions.sh $IMAGE_DIR $NGINX_USER
+bash $REPO_DIR/scripts/setup-permissions.sh $IMAGE_DIR /var/www/static $NGINX_USER
 
 # Restart Nginx
 echo "Restarting Nginx..."
