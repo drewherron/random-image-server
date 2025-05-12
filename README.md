@@ -10,6 +10,8 @@ A simple, secure Nginx-based server that displays a random image on each page lo
 - Easy to customize and deploy
 - Multiple deployment options (Docker or direct installation)
 
+There's a small attribution info tooltip in the corner, you can remove it or change it to something like a cryptocurrency donation address (I've added and commented out the code for that).
+
 ## Security Features
 
 - **Non-root execution**: Runs as unprivileged 'nobody' user
@@ -100,3 +102,7 @@ When deploying this server, consider these additional security measures:
 7. **Resource limits**: Set Docker resource limits to prevent container escape or DoS
 
 For production deployments, consider placing the server behind a reverse proxy like Cloudflare or Nginx Proxy Manager for additional protection.
+
+## Pull requests?
+
+Yes, please.
